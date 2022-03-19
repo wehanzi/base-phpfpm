@@ -22,20 +22,20 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Add configuration for the phpfpm container
-COPY deploy/phpfpm/php.ini /usr/local/etc/php/php.ini
+COPY php.ini /usr/local/etc/php/php.ini
 
 # the zzz in the filename, is to make sure this file is loaded last into the configuration
-COPY deploy/phpfpm/phpfpm.conf /usr/local/etc/php-fpm.d/zzz_phpfpm.conf
+COPY phpfpm.conf /usr/local/etc/php-fpm.d/zzz_phpfpm.conf
 
 # Configure XDEBUG extension and configuration
-COPY deploy/phpfpm/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 # Copy the container entrypoint
-COPY deploy/phpfpm/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Copy the XDebug configuration
-COPY deploy/phpfpm/xdebug.sh /xdebug.sh
+COPY xdebug.sh /xdebug.sh
 RUN chmod +x /xdebug.sh
 
 EXPOSE 9000
