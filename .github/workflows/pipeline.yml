@@ -48,23 +48,12 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build NGINX Container
-        id: build_nginx
+      - name: Build Container
+        id: build
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: deploy/nginx/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.metadata.outputs.tags }}
-          labels: ${{ steps.metadata.outputs.labels }}
-
-      - name: Build PHPFPM Container
-        id: build_phpfpm
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: deploy/phpfpm/Dockerfile
+          file: Dockerfile
           platforms: linux/amd64,linux/arm64
           build-args: |
             BUILD_PHP=${{ github.ref_type == 'tag' && steps.metadata.outputs.tags || '' }}
@@ -73,6 +62,4 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
       
       - name: Container Digests
-        run: |
-          echo ${{ steps.build_nginx.outputs.digest }}
-          echo ${{ steps.build_phpfpm.outputs.digest }}
+        run: echo ${{ steps.build.outputs.digest }}
