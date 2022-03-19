@@ -7,6 +7,9 @@ on:
   pull_request_target:
     branches: [main]
 
+env:
+  DEFAULT_PHP_VERSION: 8.0
+
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -57,7 +60,7 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           build-args: |
-            BUILD_PHP=${{ github.ref_type == 'tag' && steps.metadata.outputs.tags || '8.0' }}
+            BUILD_PHP=${{ github.ref_type == 'tag' && steps.metadata.outputs.tags || env.DEFAULT_PHP_VERSION }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
