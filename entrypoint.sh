@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "PHP_VERSION: ${PHP_VERSION}"
+
 if [ -d /www/storage ]; then
     echo "Creating log just in case laravel needs it"
     mkdir -p /www/storage/logs
