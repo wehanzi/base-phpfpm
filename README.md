@@ -1,3 +1,5 @@
+[![pipeline](https://github.com/wehanzi/base-phpfpm/actions/workflows/pipeline.yml/badge.svg)](https://github.com/wehanzi/base-phpfpm/actions/workflows/pipeline.yml)
+
 # base-phpfpm
 The base phpfpm image for docker containers. 
 
