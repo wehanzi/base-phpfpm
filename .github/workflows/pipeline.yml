@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 env:
-  DEFAULT_PHP_VERSION: 8.0
+  DEFAULT_PHP_VERSION: "8.0"
 
 jobs:
   pipeline:
