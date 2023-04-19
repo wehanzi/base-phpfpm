@@ -1,4 +1,4 @@
-ARG BUILD_PHP="8.1"
+ARG BUILD_PHP="8.2"
 ARG BUILD_DATE="develop"
 ARG VCS_REF="develop"
 ARG APP_ENV=prod
