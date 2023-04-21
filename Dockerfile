@@ -11,6 +11,8 @@ LABEL authors="Ben Smiley <ben@chatsdk.co>"
 LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.vcs-ref=$VCS_REF
 
+RUN apk add --update linux-headers
+
 RUN echo "PHP VERSION (8.2.x): ${PHP_VERSION}"
 
 RUN set -ex && apk --no-cache add postgresql-dev $PHPIZE_DEPS
